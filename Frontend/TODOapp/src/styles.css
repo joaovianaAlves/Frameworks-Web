@@ -20,6 +20,7 @@ body {
     border: 2px solid #cecece;
     padding: .35rem 1rem .25rem 1rem;
     font-size: 1rem;
+
    }
    .btn:hover {
     background-color: #ecf2fd;
@@ -39,10 +40,14 @@ body {
     font-size: 1.3rem;
     border: var(--mainblack) solid 2px;
     margin: 1rem 0;
+    right: -20px;
+    transition: 0.5s;
    }
+   
    .btn-primary:hover {
     background-color: var(--mainhover);
     color: var(--mainblack);
+    padding-right: 25px;
    }
    .btn-primary:focus {
     color: #000;
@@ -53,4 +58,5 @@ body {
    .btn-primary:active {
     background-color: #212020;
    }
+
    

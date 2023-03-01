@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tarefa } from "./Tarefa";
+import { Tarefa } from "./tarefa";
 
 
 
@@ -34,9 +34,12 @@ export class AppComponent {
     READ_tarefas(){
     this.arrayDeTarefas=[
       new Tarefa("Joao Vitor Viana Alves - 216508", false),
+      new Tarefa("Ariane Lacerda Castro - 215641", false),
       new Tarefa("Estudar Frameworks WEB", false),
       new Tarefa("Comer Pizza", false),
-      new Tarefa("Ajudar meus pais", false)
+      new Tarefa("Ajudar meus pais", false),
+      new Tarefa("Senha 28-02: 5284",false),
+      new Tarefa("Senha 28-02: 5927",false),
     ];
   }
 }
