@@ -3,6 +3,7 @@ import { Tarefa } from "./tarefa";
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -34,13 +35,24 @@ export class AppComponent {
     READ_tarefas(){
     this.arrayDeTarefas=[
       new Tarefa("Joao Vitor Viana Alves - 216508", false),
-      new Tarefa("Ariane Lacerda Castro - 215641", false),
+      new Tarefa("Marjorie Nascimento - 122383", false),
       new Tarefa("Estudar Frameworks WEB", false),
       new Tarefa("Comer Pizza", false),
       new Tarefa("Ajudar meus pais", false),
-      new Tarefa("Senha 28-02: 5284",false),
-      new Tarefa("Senha 28-02: 5927",false),
+      new Tarefa("Senha 07-03: 1086",false),
+      new Tarefa("Senha 07-03: 3709",false),
     ];
   }
+
+  DELETE_tarefa(descrição:string){
+
+    var index = this.arrayDeTarefas.map(function(e) {
+      return e.descricao;
+    }).indexOf(descrição);
+    if (this.arrayDeTarefas[index].statusRealizada == true){
+      this.arrayDeTarefas.splice(index, 1);
+    }
+  }
+
 }
 

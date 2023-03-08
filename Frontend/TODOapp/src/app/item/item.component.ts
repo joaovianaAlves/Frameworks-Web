@@ -8,4 +8,10 @@ import { Tarefa } from "../tarefa";
 export class ItemComponent {
  emEdicao = false;
  @Input() tarefa: Tarefa = new Tarefa("", false);
+ @Output() Remover = new EventEmitter<string>(); 
+
+ removerItem(descrição:string){
+    this.Remover.emit(descrição);
+ }
+
 }

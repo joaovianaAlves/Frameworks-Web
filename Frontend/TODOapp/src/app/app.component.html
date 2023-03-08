@@ -7,7 +7,7 @@
             <!-- *ngFor --- diretiva Angular de repetição -->
             <li *ngFor="let tarefaDoLoop of arrayDeTarefas">
             <!-- {{Interpolaçao no angular}} -->
-            <app-item [tarefa]="tarefaDoLoop"></app-item>
+            <app-item [tarefa]="tarefaDoLoop" (Remover)="DELETE_tarefa($event)" ></app-item>
             </li>
         </ul>
    </div>

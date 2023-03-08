@@ -3,14 +3,17 @@
     (change)="tarefa.statusRealizada = !tarefa.statusRealizada;" />
     <label [for]="tarefa.descricao">{{tarefa.descricao}}</label>
     <div *ngIf="!emEdicao" class="btn-wrapper">
-    <button class="btn" (click)="emEdicao = true ">Editar</button>
-    <button class="btn btn-warn">Remover</button>
+    <button class="btn" (click)="emEdicao = true ">Editar</button>    
+    <button class="btn btn-warn" (click)="removerItem(tarefa.descricao)">Remover</button>
+
+
+
     </div>
     <div *ngIf="emEdicao">
     <input class="sm-text-input" (keyup.enter)="tarefa.descricao=editedItem.value; emEdicao
     = false;" #editedItem placeholder="escreva o novo nome da tarefa
    aqui"
-    [value]="tarefa.descricao">
+    [value]="tarefa.descricao" >
     <div class="btn-wrapper">
     <button class="btn" (click)="emEdicao = false ">Cancelar</button>
     <button class="btn btn-save" (click)="tarefa.descricao=editedItem.value; emEdicao
