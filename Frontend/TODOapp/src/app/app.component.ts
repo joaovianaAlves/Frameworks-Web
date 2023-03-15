@@ -39,8 +39,8 @@ export class AppComponent {
       new Tarefa("Estudar Frameworks WEB", false),
       new Tarefa("Comer Pizza", false),
       new Tarefa("Ajudar meus pais", false),
-      new Tarefa("Senha 07-03: 1086",false),
-      new Tarefa("Senha 07-03: 3709",false),
+      new Tarefa("Senha 14-03: 5928",false),
+      new Tarefa("Senha 14-03: 0000",false),
     ];
   }
 
