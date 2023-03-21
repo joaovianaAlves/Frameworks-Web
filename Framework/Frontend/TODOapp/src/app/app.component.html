@@ -1,0 +1,19 @@
+<main>
+    <div class="main">
+        <h1>Mozilla Dev - My To Do List</h1>
+        <input class="lg-text-input" #campoNovoItem />
+            <button class="btn-primary" (click)="CREATE_tarefa(campoNovoItem.value)">Adicionar Tarefa </button>
+        <ul>
+            <!-- *ngFor --- diretiva Angular de repetição -->
+            <li *ngFor="let tarefaDoLoop of arrayDeTarefas">
+            <!-- {{Interpolaçao no angular}} -->
+            <app-item [tarefa]="tarefaDoLoop" (Remover)="DELETE_tarefa($event)" ></app-item>
+            </li>
+        </ul>
+   </div>
+</main>
+<!-- ** Interpolação é o método de aproximar os valores dos conjuntos discretos. 
+    Em matemática, denomina-se interpolação o método que permite construir um 
+    novo conjunto de dados a partir de um conjunto discreto de dados 
+    pontuais previamente conhecidos. -->
+<!-- <app-item [tarefa] ="tarefaDoLoop"></app-item> -->
