@@ -6,12 +6,9 @@ import { Tarefa } from "../tarefa";
  styleUrls: ['./item.component.css']
 })
 export class ItemComponent {
- emEdicao = false;
- @Input() tarefa: Tarefa = new Tarefa("", false);
- @Output() Remover = new EventEmitter<string>(); 
-
- removerItem(descrição:string){
-    this.Remover.emit(descrição);
- }
-
-}
+   emEdicao = false;
+   @Input() tarefa: Tarefa = new Tarefa("", false);
+   @Output() removeTarefa = new EventEmitter();
+   @Output() modificaTarefa = new EventEmitter();
+  }
+  

@@ -1,58 +1,48 @@
 import { Component } from '@angular/core';
 import { Tarefa } from "./tarefa";
-
-
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+ selector: 'app-root',
+ templateUrl: './app.component.html',
+ styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'TODOapp';
-  
-  //A variável "arrayDeTarefas" foi definida como um array vazio para armazenar objetos do tipo "Tarefa".
-  
-  arrayDeTarefas: Tarefa[] = [];
-  
-  //Criando um metodo READ TAREFAS
-
-  constructor(){
-    this.READ_tarefas();
-  }
-  
-  //Criando um metodo CREATE TAREFAS
-
-  CREATE_tarefa(descricaoNovaTarefa: string) {
-    //método adicionado recebe como parâmetro somente a descrição da tarefa. Na sequência ele cria um novo objeto do tipo "Tarefa", utilizando a descrição recebida como parâmetro e define automaticamente o status "false". A última linha do método insere o objeto criado no arrayDeTarefas.
-    var novaTarefa = new Tarefa(descricaoNovaTarefa, false);
-    this.arrayDeTarefas.unshift(novaTarefa);
+ title = 'TODOapp';
+ arrayDeTarefas: Tarefa[] = [];
+ apiURL : string;
+ constructor(private http: HttpClient) {
+ this.apiURL = 'http://localhost:3000';
+ this.READ_tarefas();
  }
 
+ CREATE_tarefa(descricaoNovaTarefa: string) {
+  var novaTarefa = new Tarefa(descricaoNovaTarefa, false);
+  this.http.post<Tarefa>(`${this.apiURL}/api/post`, novaTarefa).subscribe(
+  resultado => { console.log(resultado); this.READ_tarefas(); });
+ }
 
-  //O método READ_tarefas armazena 3 tarefas dentro do array
-    READ_tarefas(){
-    this.arrayDeTarefas=[
-      new Tarefa("Joao Vitor Viana Alves - 216508", false),
-      new Tarefa("Marjorie Nascimento - 122383", false),
-      new Tarefa("Estudar Frameworks WEB", false),
-      new Tarefa("Comer Pizza", false),
-      new Tarefa("Ajudar meus pais", false),
-      new Tarefa("Senha 14-03: 5928",false),
-      new Tarefa("Senha 14-03: 0000",false),
-    ];
+ READ_tarefas() {
+  this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe(
+  resultado => this.arrayDeTarefas=resultado);
+ }
+
+ UPDATE_tarefa(tarefaAserModificada: Tarefa) {
+  var indice = this.arrayDeTarefas.indexOf(tarefaAserModificada);
+  var id = this.arrayDeTarefas[indice]._id;
+  this.http.patch<Tarefa>(`${this.apiURL}/api/update/${id}`,
+  tarefaAserModificada).subscribe(
+  resultado => { console.log(resultado); this.READ_tarefas(); });
+ }
+
+ DELETE_tarefa(tarefaAserRemovida: Tarefa) {
+  var indice = this.arrayDeTarefas.indexOf(tarefaAserRemovida);
+  var id = this.arrayDeTarefas[indice]._id;
+  this.http.delete<Tarefa>(`${this.apiURL}/api/delete/${id}`).subscribe(
+  resultado => { console.log(resultado); this.READ_tarefas(); });
   }
-
-  DELETE_tarefa(descrição:string){
-
-    var index = this.arrayDeTarefas.map(function(e) {
-      return e.descricao;
-    }).indexOf(descrição);
-    if (this.arrayDeTarefas[index].statusRealizada == true){
-      this.arrayDeTarefas.splice(index, 1);
-    }
-  }
-
+ 
 }
+
 
